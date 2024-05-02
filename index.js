@@ -25,6 +25,7 @@ const questionRouter = require('./src/routes/questionRoute');
 const reviewRouter = require('./src/routes/reviewRoute');
 const setRouter = require('./src/routes/setRoute');
 const roleRoute = require('./src/routes/roleRoute');
+const menuRoute = require('./src/routes/menuRoute');
 
 app.use('/user', userRouter);
 app.use('/test', testRouter);
@@ -33,6 +34,7 @@ app.use('/question', questionRouter);
 app.use('/review', reviewRouter);
 app.use('/set', setRouter);
 app.use('/role', roleRoute);
+app.use('/menu', menuRoute);
 
 app.use((req, res, next) => {
     res.status(apiResponse.notFound).json({ error: 'Api url is not valid please check url' });
