@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "b4cdce89-e430-494a-b216-8c4916a3d885",
+		"name": "Test Series",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6286673"
+	},
+	"item": [
+		{
+			"name": "Notepad",
+			"item": [
+				{
+					"name": "createUpdate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorizations",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbGVzZXhlY3V0aXZlQGdtYWlsLmNvbSIsImlkIjoiNjNkN2JkOWFlNzExNjNhYTFkZWU4NDFiIiwicm9sZUlkIjoiU00iLCJpYXQiOjE2NzUwODMxODl9.3fnKKO6Nc9yFVV14162C7mYOgJZnEsmfx5j9-vFHZY8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"title\": \"Testing\",\r\n   \"descr\": \"Testing desctiption\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}note/createUpdate",
+							"host": [
+								"{{url}}note"
+							],
+							"path": [
+								"createUpdate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorizations",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"salesmanager@gmail.com\",\r\n    \"password\": \"qwerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}user/login",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adarsh\",\r\n    \"email\": \"adarsh.gokula@gmail.com\",\r\n    \"password\": \"qwerty\",\r\n    \"codeRoleDto\": {\r\n            \"id\": \"SM\"\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}user/signup",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:5000/",
+			"type": "string"
+		}
+	]
+}
