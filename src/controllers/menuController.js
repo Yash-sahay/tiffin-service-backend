@@ -3,13 +3,15 @@ const { successResponse, apiResponse, validationFailedResponse } = require('../c
 const Joi = require("joi");
 
 const createOrUpdate = async (req, res) => {
-    const { menuName } = req.body;
+    const { name } = req.body;
     try {
         //    Validator start
         const { body } = req;
         const menuSchema = Joi.object({
-            menuName: Joi.string().required(),
-            menuImage: Joi.string().required()
+            name: Joi.string().required(),
+            image: Joi.string().required(),
+            price: Joi.string().required(),
+            today: Joi.string().required(),
         });
         const result = menuSchema.validate(body);
         const { error } = result;
@@ -18,7 +20,7 @@ const createOrUpdate = async (req, res) => {
         }
         // Validator end
 
-        const existingMenu = await menuModel.findOne({ menuName: menuName });
+        const existingMenu = await menuModel.findOne({ name: name });
         if (existingMenu) {
             res.status(apiResponse.badRequest).json({ message: "Menu already exists" });
         }

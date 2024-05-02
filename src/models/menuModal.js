@@ -2,8 +2,13 @@ const mongoose = require('mongoose');
 
 const menuSchema = new mongoose.Schema(
     {
-        menuName: String,
-        menuImage: String
+        name: String,
+        image: String,
+        price: String,
+        today: {
+            type: String,
+            enum: ['0', '1', 'electric']
+        },
     },
     {
         timestamps: true
