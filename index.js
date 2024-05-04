@@ -40,6 +40,6 @@ app.use((req, res, next) => {
     res.status(apiResponse.notFound).json({ error: 'Api url is not valid please check url' });
 })
 
-app.listen(3000, () => {
-    console.log("Server started on port no 3000");
+app.listen(5000, () => {
+    console.log("Server started on port no 5000");
 });
