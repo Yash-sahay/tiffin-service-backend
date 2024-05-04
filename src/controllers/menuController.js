@@ -3,37 +3,48 @@ const { successResponse, apiResponse, validationFailedResponse } = require('../c
 const Joi = require("joi");
 
 const createOrUpdate = async (req, res) => {
-    const { name } = req.body;
     try {
-        //    Validator start
-        const { body } = req;
-        const menuSchema = Joi.object({
-            name: Joi.string().required(),
-            image: Joi.string().required(),
-            price: Joi.string().required(),
-            today: Joi.string().required(),
-        });
-        const result = menuSchema.validate(body);
-        const { error } = result;
-        if (error) {
-            return res.status(apiResponse.badRequest).json(validationFailedResponse(error));
+        const { name, _id } = req.body;
+        const existingMenu = await menuModel.findOne({ name });
+        if (!_id && existingMenu) {
+            return res
+                .status(apiResponse.badRequest)
+                .json({ message: "Menu already exists" });
         }
-        // Validator end
 
-        const existingMenu = await menuModel.findOne({ name: name });
-        if (existingMenu) {
-            res.status(apiResponse.badRequest).json({ message: "Menu already exists" });
+        let responseMessage;
+        let request;
+
+        if (_id) {
+            const menu = await menuModel.findById(_id);
+
+            if (!menu) {
+                return res
+                    .status(apiResponse.notFound)
+                    .json({ message: "Menu not found" });
+            }
+            Object.assign(menu, req.body);
+            request = await menu.save();
+
+            responseMessage = "Menu Successfully Updated";
+        } else {
+            const newMenu = new menuModel(req.body);
+            request = await newMenu.save();
+
+            responseMessage = "Menu Successfully Created";
         }
-        else {
-            let role = new menuModel(req.body);
-            let request = await role.save();
-            res.status(apiResponse.success).json(successResponse("Menu Successfully Register", request));
-        }
+
+        return res
+            .status(apiResponse.success)
+            .json(successResponse(responseMessage, request));
     } catch (error) {
-        console.log(error);
-        res.status(apiResponse.networkError).json({ message: "Internal Server Error" });
+        console.error(error);
+        res
+            .status(apiResponse.networkError)
+            .json({ message: "Internal Server Error" });
     }
-}
+};
+
 
 
 const getAll = async (req, res) => {
