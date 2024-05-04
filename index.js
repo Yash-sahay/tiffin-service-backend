@@ -3,6 +3,7 @@ const app = express();
 bodyParser = require('body-parser');
 require('./db/config');
 const { apiResponse } = require('./src/common/apiResponse');
+const path = require('path');
 
 const cors = require('cors');
 
@@ -18,6 +19,10 @@ app.use(
 app.use(express.json());
 app.use(cors());
 
+
+app.use('/temp-resources', express.static(path.join(__dirname, '/temp-resources')));
+app.use('/resources', express.static(path.join(__dirname, '/resources')));
+
 const userRouter = require('./src/routes/userRoutes');
 const testRouter = require('./src/routes/testRoute');
 const subjectRouter = require('./src/routes/subjectRoute');
@@ -26,6 +31,7 @@ const reviewRouter = require('./src/routes/reviewRoute');
 const setRouter = require('./src/routes/setRoute');
 const roleRoute = require('./src/routes/roleRoute');
 const menuRoute = require('./src/routes/menuRoute');
+const uploadDocRoute = require('./src/routes/uploadDocRoute');
 
 app.use('/user', userRouter);
 app.use('/test', testRouter);
@@ -35,6 +41,7 @@ app.use('/review', reviewRouter);
 app.use('/set', setRouter);
 app.use('/role', roleRoute);
 app.use('/menu', menuRoute);
+app.use('/doc', uploadDocRoute);
 
 app.use((req, res, next) => {
     res.status(apiResponse.notFound).json({ error: 'Api url is not valid please check url' });
