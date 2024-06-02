@@ -7,8 +7,8 @@ const getAll = async (req, res) => {
     try {
         const menus = await menuModal.find();
         const orders = await orderModal.find().populate("userId").populate("menuId");
-        let latestMenuList = menus.slice(-6);
-        let latestOrderList = orders.slice(-6);
+        let latestMenuList = menus.slice(-10);
+        let latestOrderList = orders.slice(-10);
         let latestMenuOrder = {
             latestMenuList: latestMenuList,
             latestOrderList: latestOrderList,
