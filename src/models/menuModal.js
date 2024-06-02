@@ -5,9 +5,15 @@ const menuSchema = new mongoose.Schema(
         name: String,
         image: String,
         price: String,
-        today: {
+        todayMenu: {
             type: String,
-            enum: ['0', '1', 'electric']
+            enum: [false, true],
+            default: false
+        },
+        orderConfirmed: {
+            type: String,
+            enum: [false, true],
+            default: false
         },
     },
     {
