@@ -32,6 +32,7 @@ const setRouter = require('./src/routes/setRoute');
 const roleRoute = require('./src/routes/roleRoute');
 const menuRoute = require('./src/routes/menuRoute');
 const orderRoute = require('./src/routes/orderRoute');
+const latestOrderMenuRoute = require('./src/routes/latestOrderMenuRoute');
 const uploadDocRoute = require('./src/routes/uploadDocRoute');
 
 app.use('/user', userRouter);
@@ -43,6 +44,7 @@ app.use('/set', setRouter);
 app.use('/role', roleRoute);
 app.use('/menu', menuRoute);
 app.use('/order', orderRoute);
+app.use('/latestOrderMenu', latestOrderMenuRoute);
 app.use('/doc', uploadDocRoute);
 
 app.use((req, res, next) => {
