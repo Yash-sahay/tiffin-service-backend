@@ -6,7 +6,7 @@ const Joi = require("joi");
 const getAll = async (req, res) => {
     try {
         const menus = await menuModal.find();
-        const orders = await orderModal.find();
+        const orders = await orderModal.find().populate("userId").populate("menuId");
         let latestMenuList = menus.slice(-6);
         let latestOrderList = orders.slice(-6);
         let latestMenuOrder = {
