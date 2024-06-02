@@ -6,12 +6,12 @@ const menuSchema = new mongoose.Schema(
         image: String,
         price: String,
         todayMenu: {
-            type: String,
+            type: Boolean,
             enum: [false, true],
             default: false
         },
         orderConfirmed: {
-            type: String,
+            type: Boolean,
             enum: [false, true],
             default: false
         },
