@@ -17,8 +17,9 @@ const createOrUpdate = async (req, res) => {
 
 const getAll = async (req, res) => {
     try {
-        const roles = await orderModal.find();
-        res.status(apiResponse.success).json(successResponse("Successfully Fetch", roles));
+        const orders = await orderModal.find().populate("userId").populate("menuId");
+        // const orders = await orderModal.find();
+        res.status(apiResponse.success).json(successResponse("Successfully Fetch", orders));
     } catch (error) {
         console.log(error);
         res.status(apiResponse.networkError).json({ message: "Internal Server Error" });
